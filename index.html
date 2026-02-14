@@ -5,19 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1.3.0/dist/aframe-master.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-    <style>
-      .arjs-loader {
-        height: 100%; width: 100%; position: absolute; top: 0; left: 0;
-        background-color: rgba(0, 0, 0, 0.8); z-index: 9999;
-        display: flex; justify-content: center; align-items: center;
-      }
-      .arjs-loader div { text-align: center; font-size: 1.25em; color: white; }
-    </style>
   </head>
-
   <body style="margin: 0px; overflow: hidden;">
-    <div class="arjs-loader"><div>Cargando marcador... mantén la cámara fija.</div></div>
-
+    <div id="loader" style="position: fixed; z-index: 999; background: rgba(0,0,0,0.8); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; color: white; font-family: sans-serif;">
+      <div>Cargando marcador NFT... mantén la cámara fija al logo.</div>
+    </div>
     <a-scene
       vr-mode-ui="enabled: false;"
       renderer="logarithmicDepthBuffer: true;"
@@ -27,32 +19,20 @@
       <a-assets>
         <a-asset-item id="skull" src="./modelo.glb"></a-asset-item>
       </a-assets>
-
       <a-nft
         type="nft"
         url="https://iamphasma3-source.github.io/marcador"
         smooth="true"
         smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
       >
-        <a-entity
-          gltf-model="#skull"
-          scale="100 100 100"
-          position="0 0 0"
-          rotation="-90 0 0"
-        >
-        </a-entity>
+        <a-entity gltf-model="#skull" scale="200 200 200" position="0 0 0" rotation="-90 0 0"></a-entity>
       </a-nft>
       <a-entity camera></a-entity>
     </a-scene>
-
     <script>
       window.addEventListener('arjs-nft-loaded', () => {
-         document.querySelector('.arjs-loader').style.display = 'none';
+        document.getElementById('loader').style.display = 'none';
       });
     </script>
   </body>
 </html>
-
-
