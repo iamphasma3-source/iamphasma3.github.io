@@ -2,26 +2,24 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>AR.js Huichol Skull - Corregido</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1.3.0/dist/aframe-master.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
   </head>
 
   <body style="margin: 0px; overflow: hidden;">
-    <div class="arjs-loader" style="position: fixed; z-index: 999; background: rgba(0,0,0,0.8); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; color: white; font-family: sans-serif;">
-      <div>Cargando marcador NFT... por favor espera.</div>
+    <div class="arjs-loader" style="position: fixed; z-index: 999; background: rgba(0,0,0,0.8); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; color: white;">
+      <div>Cargando marcador... mantén la cámara fija al logo.</div>
     </div>
 
     <a-scene
       vr-mode-ui="enabled: false;"
-      renderer="logarithmicDepthBuffer: true; precision: medium;"
+      renderer="logarithmicDepthBuffer: true;"
       embedded
       arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
     >
       <a-assets>
-        <a-asset-item id="skull-model" src="./calavera.glb"></a-asset-item>
+        <a-asset-item id="skull" src="./modelo.glb"></a-asset-item>
       </a-assets>
 
       <a-nft
@@ -33,8 +31,8 @@
         smoothThreshold="5"
       >
         <a-entity
-          gltf-model="#skull-model"
-          scale="1 1 1" 
+          gltf-model="#skull"
+          scale="150 150 150"
           position="0 0 0"
           rotation="-90 0 0"
         >
@@ -45,11 +43,9 @@
     </a-scene>
 
     <script>
-      // Script para quitar el mensaje de carga cuando se detecte el marcador
       window.addEventListener('arjs-nft-loaded', () => {
         document.querySelector('.arjs-loader').style.display = 'none';
       });
     </script>
   </body>
 </html>
-
