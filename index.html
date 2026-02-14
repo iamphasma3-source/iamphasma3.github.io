@@ -3,25 +3,30 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>AR.js - Huichol Skull</title>
+    <title>AR.js Huichol Skull - Corregido</title>
+    
     <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1.3.0/dist/aframe-master.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
   </head>
 
   <body style="margin: 0px; overflow: hidden;">
+    <div class="arjs-loader" style="position: fixed; z-index: 999; background: rgba(0,0,0,0.8); width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; color: white; font-family: sans-serif;">
+      <div>Cargando marcador NFT... por favor espera.</div>
+    </div>
+
     <a-scene
       vr-mode-ui="enabled: false;"
-      renderer="logarithmicDepthBuffer: true;"
+      renderer="logarithmicDepthBuffer: true; precision: medium;"
       embedded
       arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;"
     >
       <a-assets>
-        <a-asset-item id="skull-model" src="./huichol_wixarika_art_-_skull (1).glb"></a-asset-item>
+        <a-asset-item id="skull-model" src="./calavera.glb"></a-asset-item>
       </a-assets>
 
       <a-nft
         type="nft"
-        url="./Captura_de_pantalla_2024-12-11_154917-removebg-preview"
+        url="./marcador"
         smooth="true"
         smoothCount="10"
         smoothTolerance=".01"
@@ -29,7 +34,7 @@
       >
         <a-entity
           gltf-model="#skull-model"
-          scale="250 250 250" 
+          scale="100 100 100" 
           position="0 0 0"
           rotation="-90 0 0"
         >
@@ -38,6 +43,12 @@
 
       <a-entity camera></a-entity>
     </a-scene>
-  </body>
 
+    <script>
+      // Script para quitar el mensaje de carga cuando se detecte el marcador
+      window.addEventListener('arjs-nft-loaded', () => {
+        document.querySelector('.arjs-loader').style.display = 'none';
+      });
+    </script>
+  </body>
 </html>
